@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "446235750490",
+    "firebase_url": "https://myassistanceapp.firebaseio.com",
+    "project_id": "myassistanceapp",
+    "storage_bucket": "myassistanceapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:446235750490:android:f4dd8a46c50a1899",
+        "android_client_info": {
+          "package_name": "com.training.myassistantapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "446235750490-nkd9m19ujm24mpbvl9khi2o2l3qns0a7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDwGZNvLF8I9GTPuX3dI3IjGf0ToznRE6s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "446235750490-nkd9m19ujm24mpbvl9khi2o2l3qns0a7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
