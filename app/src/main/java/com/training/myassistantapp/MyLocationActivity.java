@@ -28,6 +28,7 @@ public class MyLocationActivity extends AppCompatActivity implements LocationLis
     LocationManager locationManager;
 
     ProgressDialog progressDialog;
+    String  Address;
 
     void initViews() {
         txtLocation = findViewById(R.id.textViewLocation);
@@ -90,10 +91,11 @@ public class MyLocationActivity extends AppCompatActivity implements LocationLis
                 for(int i=0;i<=address.getMaxAddressLineIndex();i++){
                     buffer.append(address.getAddressLine(i)+"\n");
                 }
+                Address = buffer.toString();
 
             }
 
-            txtLocation.setText("Location: "+latitude+" : "+longitude+"\nAddress:"+buffer.toString());
+            txtLocation.setText("Location: "+latitude+" : "+longitude+"\nAddress:"+Address);
 
             Intent intent = new Intent(MyLocationActivity.this, MapsActivity.class);
             intent.putExtra("latitude",latitude);

@@ -1,8 +1,12 @@
 package com.training.myassistantapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -11,10 +15,23 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseUser;
+import com.training.myassistantapp.model.User;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
+
+
+    public FloatingActionButton btnfab;
+        double lat;
+        double lng;
+
+    ProgressDialog progressDialog;
+// LocationListener locationListener;
+    FirebaseUser firebaseUser;
+      User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +41,22 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+
+
+        btnfab = (FloatingActionButton) findViewById(R.id.fab);
+
+        btnfab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Toast.makeText(MapsActivity.this, "Location Saved Successfully", Toast.LENGTH_LONG).show();
+            }
+
+        });
+
+
     }
 
 
@@ -40,13 +73,30 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+
+        btnfab.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MapsActivity.this,AddVehicleActivity.class);
+                intent.putExtra("latitude",lat);
+                intent.putExtra("longitude",lng);
+                startActivity(intent);
+                finish();
+            }
+
+        });
+
+
         Intent rcv = getIntent();
-        double lat = rcv.getDoubleExtra("latitude",30.9024825);
-        double lng = rcv.getDoubleExtra("longitude",75.8201934);
+        lat = rcv.getDoubleExtra("latitude", 30.9024825);
+        lng = rcv.getDoubleExtra("longitude", 75.8201934);
         String text = rcv.getStringExtra("address");
-        LatLng ldh = new LatLng(lat,lng);
+        LatLng ldh = new LatLng(lat, lng);
+
         mMap.addMarker(new MarkerOptions().position(ldh).title(text).snippet("SET INCIDENT LOCATION"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ldh,16));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(ldh, 12));
 
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
@@ -58,6 +108,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
+
                 return false;
             }
         });
@@ -65,10 +116,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
             @Override
             public void onInfoWindowClick(Marker marker) {
+                //saveUserInCloudDB();
 
             }
         });
 
 
     }
-}
+    }
+
+
+

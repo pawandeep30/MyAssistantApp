@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -20,8 +21,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText eTxtEmail, eTxtPassword;
 
     Button btnLogin;
-
     User user;
+    //MyLocationActivity myLocationActivity;
 
     ProgressDialog progressDialog;
 
@@ -54,10 +55,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View v) {
         user.email = eTxtEmail.getText().toString();
         user.password = eTxtPassword.getText().toString();
+//        user.address = myLocationActivity.Address;
         loginUser();
     }
 
     void loginUser(){
+
 
         progressDialog.show();
 
@@ -66,10 +69,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if(task.isComplete()){
-                            Toast.makeText(LoginActivity.this,user.email+ "Login Successfully", Toast.LENGTH_LONG).show();
+                        if (task.isComplete()) {
+                            Toast.makeText(LoginActivity.this, user.email + "Login Successfully", Toast.LENGTH_LONG).show();
 
-                            Intent intent = new Intent(LoginActivity.this, SubmitAnIncidentActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, MyLocationActivity.class);
                             startActivity(intent);
                             progressDialog.dismiss();
                             finish();

@@ -52,8 +52,6 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         btnRegister = findViewById(R.id.buttonRegister);
         txtLogin = findViewById(R.id.textViewLogin);
 
-
-
         btnRegister.setOnClickListener(this);
         txtLogin.setOnClickListener(this);
 
@@ -134,14 +132,14 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isComplete()){
-                            Toast.makeText(RegistrationActivity.this,user.name+ "Registered Successfully", Toast.LENGTH_LONG).show();
+                        if(task.isComplete()) {
+                            Toast.makeText(RegistrationActivity.this, user.name + "Registered Successfully", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
-                            Intent intent = new Intent(RegistrationActivity.this, SubmitAnIncidentActivity.class);
+                            Intent intent = new Intent(RegistrationActivity.this, MyLocationActivity.class);
                             startActivity(intent);
                             finish();
 
-                           // saveUserInCloudDB();
+                            // saveUserInCloudDB();
 
                             subscribeUserForCloudMessaging();
 
