@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,8 +25,11 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.training.myassistantapp.model.User;
 import com.training.myassistantapp.model.Util;
 
-public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener{
+import static android.os.Build.VERSION_CODES.P;
 
+public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener {
+
+   // public String name, email, password;
     EditText eTxtName, eTxtEmail, eTxtPassword;
     TextView txtLogin;
 
@@ -42,10 +46,10 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     FirebaseUser firebaseUser;
 
 
-    FirebaseMessaging firebaseMessaging;
+    // FirebaseMessaging firebaseMessaging;
     FirebaseInstanceId firebaseInstanceId;
 
-    void initViews(){
+    void initViews() {
         eTxtName = findViewById(R.id.editTextName);
         eTxtEmail = findViewById(R.id.editTextEmail);
         eTxtPassword = findViewById(R.id.editTextPassword);
@@ -62,124 +66,117 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         user = new User();
 
         auth = FirebaseAuth.getInstance();
+        firebaseUser = auth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
 
-        firebaseMessaging = FirebaseMessaging.getInstance();
+        // firebaseMessaging = FirebaseMessaging.getInstance();
         firebaseInstanceId = FirebaseInstanceId.getInstance();
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
         initViews();
     }
+
 
     @Override
     public void onClick(View v) {
 
         int id = v.getId();
 
-        if(id == R.id.buttonRegister) {
+        if (id == R.id.buttonRegister) {
 
-            //Get the data from UI and put it into User Object
+         //Get the data from UI and put it into User Object
             user.name = eTxtName.getText().toString();
             user.email = eTxtEmail.getText().toString();
             user.password = eTxtPassword.getText().toString();
 
             if(Util.isInternetConnected(this)) {
                 registerUser();
+
+
             }else{
-                Toast.makeText(this,"Please Connect to Internet and Try Again",Toast.LENGTH_LONG).show();
+             Toast.makeText(this, "Please Connect to Internet and Try Again", Toast.LENGTH_LONG).show();
             }
-        }else{
-            Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-            startActivity(intent);
+
         }
     }
 
-   void subscribeUserForCloudMessaging(){
-        firebaseMessaging.subscribeToTopic("events")
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful()){
-                            getToken();
-                        }
-                    }
-                });
-    }
 
-    void getToken(){
-        firebaseInstanceId.getInstanceId()
-                .addOnCompleteListener(this, new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if(task.isComplete()){
-                            user.token = task.getResult().getToken();
-                            saveUserInCloudDB();
 
-                        }
-                    }
-                });
-    }
 
-    void registerUser(){
+    void registerUser() {
+        String name = eTxtName.getText().toString().trim();
+        String email = eTxtEmail.getText().toString().trim();
+        String password = eTxtPassword.getText().toString().trim();
 
-        progressDialog.show();
+        if (TextUtils.isEmpty(name)) {
+            Toast.makeText(this, "Please Enter Valid Name", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(email)) {
+            Toast.makeText(this, "Please Enter Valid Email", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(password)) {
+            Toast.makeText(this, "Please Enter Valid Password", Toast.LENGTH_SHORT).show();
+            return;
+        }
 
-        auth.createUserWithEmailAndPassword(user.email, user.password)
+        auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isComplete()) {
-                            Toast.makeText(RegistrationActivity.this, user.name + "Registered Successfully", Toast.LENGTH_LONG).show();
-                            progressDialog.dismiss();
-                            Intent intent = new Intent(RegistrationActivity.this, MyLocationActivity.class);
-                            startActivity(intent);
-                            finish();
-
-                            // saveUserInCloudDB();
-
-                            subscribeUserForCloudMessaging();
-
+                        if (task.isSuccessful()) {
+                           // Toast.makeText(RegistrationActivity.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
                         }
+//                        else {
+//                            Toast.makeText(RegistrationActivity.this, "Could not Register! Please Try Again", Toast.LENGTH_SHORT).show();
+//                        }
+                        saveUserInCloudDB();
                     }
-                });
 
+                });
     }
 
-    void saveUserInCloudDB(){
+    void saveUserInCloudDB() {
 
-        db.collection("users").add(user)
-        .addOnCompleteListener(this, new OnCompleteListener<DocumentReference>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentReference> task) {
-                if(task.isComplete()){
-                     Toast.makeText(RegistrationActivity.this,user.name+ "Registered Successfully", Toast.LENGTH_LONG).show();
-                     progressDialog.dismiss();
-                     Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
-                     startActivity(intent);
-                     finish();
-                }
-            }
-        });
+//        db.collection("users").add(user)
+//                .addOnCompleteListener(this, new OnCompleteListener<DocumentReference>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<DocumentReference> task) {
+//                        if (task.isComplete()) {
+//                            Toast.makeText(RegistrationActivity.this, user.name + "Registered Successfully", Toast.LENGTH_LONG).show();
+//                            progressDialog.dismiss();
+//                            Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
+//                            startActivity(intent);
+//                            finish();
+//                        }
+//                    }
+//                });
+
+
 
         firebaseUser = auth.getCurrentUser();
         db.collection("users").document(firebaseUser.getUid()).set(user)
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        Toast.makeText(RegistrationActivity.this,user.name+ "Registered Successfully", Toast.LENGTH_LONG).show();
+                        Toast.makeText(RegistrationActivity.this, user.name + " Registered Successfully ", Toast.LENGTH_LONG).show();
                         progressDialog.dismiss();
 
-                        Intent intent = new Intent(RegistrationActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(RegistrationActivity.this, MyLocationActivity.class);
                         startActivity(intent);
                         finish();
                     }
                 });
 
-    }
+          }
+
 
 
 }

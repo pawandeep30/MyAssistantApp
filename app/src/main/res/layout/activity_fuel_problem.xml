@@ -11,8 +11,8 @@
 
     <android.support.v7.widget.AppCompatImageView
         android:id="@+id/car_icon"
-        android:layout_width="275dp"
-        android:layout_height="132dp"
+        android:layout_width="234dp"
+        android:layout_height="106dp"
         android:layout_marginTop="16dp"
         android:orientation="vertical"
         android:src="@drawable/fuel"
@@ -20,90 +20,40 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="67dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="84dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/car_icon"
-        tools:src="@drawable/wrongfuel" />
+
+
 
     <Button
         android:id="@+id/buttonWrongFuel"
-        android:layout_width="260dp"
-        android:layout_height="0.4in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="168dp"
         android:layout_marginEnd="8dp"
-        android:text="Button"
+        android:text="wrong Fuel"
+        android:textColor="@color/colorblack"
+        android:textSize="24dp"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.777"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/car_icon" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="67dp"
-        android:layout_height="61dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.165"
-        app:srcCompat="@drawable/outfuel" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonOutFuel"
-        android:layout_width="260dp"
-        android:layout_height="0.4in"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Button"
+        android:padding="16dp"
+        android:text="Out of Fuel"
+        android:textColor="@color/colorblack"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.442"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonWrongFuel"
-        app:layout_constraintVertical_bias="0.082" />
-
-
-    <!--<Button-->
-        <!--android:id="@+id/buttonWrongFuel"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="168dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:text="wrong Fuel"-->
-        <!--android:textColor="@color/colorblack"-->
-        <!--android:textSize="24dp"-->
-        <!--android:padding="16dp"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintHorizontal_bias="0.498"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
-
-    <!--<Button-->
-        <!--android:id="@+id/buttonOutFuel"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginStart="8dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:layout_marginEnd="8dp"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:padding="16dp"-->
-        <!--android:text="Out of Fuel"-->
-        <!--android:textColor="@color/colorblack"-->
-        <!--android:textSize="24dp"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/buttonWrongFuel"-->
-        <!--app:layout_constraintVertical_bias="0.24" />-->
+        app:layout_constraintVertical_bias="0.24" />
 </android.support.constraint.ConstraintLayout>

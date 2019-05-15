@@ -6,6 +6,8 @@ import android.location.Address;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -107,13 +109,14 @@ public class AddVehicleActivity extends AppCompatActivity implements View.OnClic
 
     void saveVehicleInCloudDB(){
 
+        firebaseUser = auth.getCurrentUser();
         db.collection("users").document(auth.getCurrentUser().getUid()).collection("vehicles").
                 add(vehicleRegistration).addOnCompleteListener(this, new OnCompleteListener<DocumentReference>() {
             @Override
             public void onComplete(@NonNull Task<DocumentReference> task) {
                 if(task.isComplete()) {
                     Toast.makeText(AddVehicleActivity.this, vehicleRegistration.Uid + "Save Vehicle Successfully", Toast.LENGTH_LONG).show();
-                    progressDialog.dismiss();
+                    //progressDialog.dismiss();
                     Intent intent = new Intent(AddVehicleActivity.this, SubmitAnIncidentActivity.class);
                     startActivity(intent);
                     finish();
@@ -125,6 +128,36 @@ public class AddVehicleActivity extends AppCompatActivity implements View.OnClic
         });
 
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(1,101,1,"User Profile");
+        menu.add(1,102,1,"Vehicle Details");
+        menu.add(1,103,1,"Log Out");
+
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if(id == 101){
+            Intent intent = new Intent(AddVehicleActivity.this, HomeActivity.class);
+            startActivity(intent);
+        } else if(id == 102){
+            Intent intent = new Intent(AddVehicleActivity.this, AddVehicleActivity.class);
+            startActivity(intent);
+        }else if(item.getItemId() == 103){
+            auth.signOut();
+            Intent intent = new Intent(AddVehicleActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

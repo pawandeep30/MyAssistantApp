@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -15,12 +17,15 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.training.myassistantapp.model.User;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
+
+    FirebaseAuth auth;
 
 
 
@@ -44,7 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
 
 
-        btnfab = (FloatingActionButton) findViewById(R.id.fab);
+       btnfab = (FloatingActionButton) findViewById(R.id.fab);
 
         btnfab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,7 +126,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             }
         });
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(1,101,1,"User Profile");
+        menu.add(1,102,1,"Vehicle Details");
+        menu.add(1,103,1,"Log Out");
 
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if(id == 101){
+            Intent intent = new Intent(MapsActivity.this, HomeActivity.class);
+            startActivity(intent);
+        } else if(id == 102){
+            Intent intent = new Intent(MapsActivity.this, AddVehicleActivity.class);
+            startActivity(intent);
+        }else if(item.getItemId() == 103){
+            auth.signOut();
+            Intent intent = new Intent(MapsActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
     }
 

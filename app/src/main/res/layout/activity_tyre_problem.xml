@@ -8,19 +8,32 @@
     android:background="@drawable/roadside"
     tools:context=".TyreProblemActivity">
 
+    <android.support.v7.widget.AppCompatImageView
+        android:id="@+id/car_icon"
+        android:layout_width="234dp"
+        android:layout_height="106dp"
+        android:layout_marginTop="52dp"
+        android:orientation="vertical"
+        android:src="@drawable/tyre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <Button
         android:id="@+id/buttonNeedRepair"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="200dp"
         android:layout_marginEnd="8dp"
+        android:padding="16dp"
         android:text="Need Repair/Patch"
         android:textColor="@color/colorblack"
         android:textSize="24dp"
-        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.75"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
