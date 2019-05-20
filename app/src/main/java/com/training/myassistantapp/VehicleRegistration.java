@@ -39,4 +39,7 @@ public VehicleRegistration()
                 ", Longitiude=" + Longitiude +
                 '}';
     }
+
+    public void add(VehicleRegistration vehicleRegistration) {
+    }
 }

@@ -161,13 +161,6 @@ public class SubmitAnIncidentActivity extends AppCompatActivity  implements View
         }
     }
 
-
-
-
-
-
-
-
     void saveComplaintInCloudDB() {
 
         firebaseUser = auth.getCurrentUser();
@@ -179,9 +172,9 @@ public class SubmitAnIncidentActivity extends AppCompatActivity  implements View
                 if (task.isComplete()) {
                     Toast.makeText(SubmitAnIncidentActivity.this, complaints.issue + "Save Complaints Successfully", Toast.LENGTH_LONG).show();
                     //progressDialog.dismiss();
-                   // Intent intent = new Intent(SubmitAnIncidentActivity.this, SubmitAnIncidentActivity.class);
-                   // startActivity(intent);
-                  //  finish();
+                   Intent intent = new Intent(SubmitAnIncidentActivity.this, ConfirmActivity.class);
+                    startActivity(intent);
+                    finish();
 
 
                 }

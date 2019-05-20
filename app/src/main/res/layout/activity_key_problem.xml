@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@drawable/roadside"
     tools:context=".KeyProblemActivity">
 
     <android.support.v7.widget.AppCompatImageView
@@ -29,7 +28,8 @@
         android:layout_marginTop="188dp"
         android:layout_marginEnd="8dp"
         android:text="Key in Car"
-        android:textColor="@color/colorblack"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorLightred"
         android:textSize="24dp"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -46,7 +46,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:text="Lost Key"
-        android:textColor="@color/colorblack"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorLightred"
         android:textSize="24dp"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"

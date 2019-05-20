@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,15 +23,15 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.training.myassistantapp.model.User;
-import com.training.myassistantapp.model.Util;
 
-import org.w3c.dom.Text;
+import static com.training.myassistantapp.R.id.textViewforgot;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     EditText eTxtEmail, eTxtPassword;
 
     Button btnLogin;
-    //TextView txtLogin,  txtforget;
+    TextView txtforgot;
+    TextView txtneedaccount;
 
     User user;
     ProgressDialog progressDialog;
@@ -41,14 +42,13 @@ FirebaseUser firebaseUser;
         eTxtEmail = findViewById(R.id.editTextEmail);
         eTxtPassword = findViewById(R.id.editTextPassword);
         btnLogin = findViewById(R.id.buttonLogin);
-      //  txtLogin = findViewById(R.id.textViewRegister);
-       // txtforget= findViewById(R.id.textViewforgot);
-
+       txtforgot= findViewById(textViewforgot);
+       txtneedaccount = findViewById(R.id.textViewneedaccount);
         user = new User();
 
         btnLogin.setOnClickListener(this);
-      //  txtLogin.setOnClickListener(this);
-     //   txtforget.setOnClickListener(this);
+       txtneedaccount.setOnClickListener(this);
+       txtforgot.setOnClickListener(this);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait..");
@@ -85,32 +85,27 @@ FirebaseUser firebaseUser;
                 loginUser();
                 break;
 
-            case R.id.textViewRegister:
+            case R.id.textViewneedaccount:
                 Intent intent = new Intent(LoginActivity.this, RegistrationActivity.class);
                 startActivity(intent);
                 finish();
                 break;
+
+            case R.id.textViewforgot:
+//              AlertDialog.Builder mbuilder=new AlertDialog.Builder(LoginActivity.this);
+//              View mView=getLayoutInflater().inflate(R.layout.activity_forgot_password,null);
+
+                Intent intent1 = new Intent(LoginActivity.this, ForgotPassword.class);
+                startActivity(intent1);
+                finish();
+                break;
+
         }
-
-
     }
-
-            // case R.id.textForgotPassword:
-             /* AlertDialog.Builder mbuilder=new AlertDialog.Builder(LoginActivity.this);
-              View mView=getLayoutInflater().inflate(R.layout.activity_forgot_password,null);*/
-//
-//        Intent intent1=new Intent(LoginActivity.this,ForgotPassword.class);
-//        startActivity(intent1);
-//        finish();
-
-
 
 //        user.email = eTxtEmail.getText().toString();
 //        user.password = eTxtPassword.getText().toString();
-////        user.address = myLocationActivity.Address;
-//
-//
-//
+
 
 
     void loginUser(){
@@ -122,13 +117,23 @@ FirebaseUser firebaseUser;
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
-                        if (task.isComplete()) {
+                        if (!task.isComplete()) {
                             // there was an error
 
-                                Toast.makeText(LoginActivity.this, " Login Successful", Toast.LENGTH_LONG).show();
-                              //  Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
-
+                            if (user.password.length() < 6) {
+                                eTxtPassword.setError(getString(R.string.minimum_password));
                                 progressDialog.dismiss();
+                            } else {
+
+                                Toast.makeText(LoginActivity.this, getString(R.string.auth_failed), Toast.LENGTH_LONG).show();
+                                clearFields();
+                                progressDialog.dismiss();
+                            }
+                        } else {
+
+                            Toast.makeText(LoginActivity.this, " Login Successful", Toast.LENGTH_LONG).show();
+                            progressDialog.dismiss();
+
                                 Intent intent = new Intent(LoginActivity.this, MyLocationActivity.class);
                                 startActivity(intent);
                                 finish();
@@ -139,13 +144,13 @@ FirebaseUser firebaseUser;
                 });
 
     }
-    void clearFields(){
+    void clearFields() {
         eTxtEmail.setText("");
         eTxtPassword.setText("");
-
+    }
                         }
-//                            Toast.makeText(LoginActivity.this, user.email + "Login Successfully", Toast.LENGTH_LONG).show();
-
+//                           Toast.makeText(LoginActivity.this, user.email + "Login Successfully", Toast.LENGTH_LONG).show();
+//
 //                            Intent intent = new Intent(LoginActivity.this, MyLocationActivity.class);
 //                            startActivity(intent);
 //                            progressDialog.dismiss();
@@ -156,6 +161,6 @@ FirebaseUser firebaseUser;
 //                });
 //
 //    }
-
+//
 //}
-    }
+

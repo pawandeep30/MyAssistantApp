@@ -117,9 +117,9 @@ public class TyreProblemActivity extends AppCompatActivity implements View.OnCli
                 if (task.isComplete()) {
                     Toast.makeText(TyreProblemActivity.this, complaints.issue + "Save Complaints Successfully", Toast.LENGTH_LONG).show();
                     //progressDialog.dismiss();
-                    // Intent intent = new Intent(SubmitAnIncidentActivity.this, SubmitAnIncidentActivity.class);
-                    // startActivity(intent);
-                    //  finish();
+                     Intent intent = new Intent(TyreProblemActivity.this, ConfirmActivity.class);
+                     startActivity(intent);
+                      finish();
 
 
                 }

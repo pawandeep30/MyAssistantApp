@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@drawable/roadside"
     tools:context=".TyreProblemActivity">
 
     <android.support.v7.widget.AppCompatImageView
@@ -30,7 +29,8 @@
         android:layout_marginEnd="8dp"
         android:padding="16dp"
         android:text="Need Repair/Patch"
-        android:textColor="@color/colorblack"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorLightred"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.75"
@@ -45,7 +45,8 @@
         android:layout_marginTop="80dp"
         android:layout_marginEnd="8dp"
         android:text="Need Spare Wheel"
-        android:textColor="@color/colorblack"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorLightred"
         android:textSize="24dp"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"

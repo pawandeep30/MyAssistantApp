@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@drawable/roadside"
     tools:context=".FuelProblemActivity">
 
 
@@ -20,9 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-
-
     <Button
         android:id="@+id/buttonWrongFuel"
         android:layout_width="match_parent"
@@ -31,7 +27,8 @@
         android:layout_marginTop="168dp"
         android:layout_marginEnd="8dp"
         android:text="wrong Fuel"
-        android:textColor="@color/colorblack"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorLightred"
         android:textSize="24dp"
         android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +46,8 @@
         android:layout_marginBottom="8dp"
         android:padding="16dp"
         android:text="Out of Fuel"
-        android:textColor="@color/colorblack"
+        android:textColor="@color/colorWhite"
+        android:background="@color/colorLightred"
         android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

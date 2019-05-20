@@ -147,9 +147,9 @@ public class OthersIncidentActivity extends AppCompatActivity implements View.On
                  if (task.isComplete()) {
                      Toast.makeText(OthersIncidentActivity.this, complaints.issue + "Save Complaints Successfully", Toast.LENGTH_LONG).show();
                      //progressDialog.dismiss();
-                     // Intent intent = new Intent(SubmitAnIncidentActivity.this, SubmitAnIncidentActivity.class);
-                     // startActivity(intent);
-                     //  finish();
+                      Intent intent = new Intent(OthersIncidentActivity.this, ConfirmActivity.class);
+                      startActivity(intent);
+                      finish();
 
 
                  }

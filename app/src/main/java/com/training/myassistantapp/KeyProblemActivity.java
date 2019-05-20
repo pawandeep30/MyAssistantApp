@@ -117,9 +117,9 @@ public class KeyProblemActivity extends AppCompatActivity implements View.OnClic
                     if (task.isComplete()) {
                         Toast.makeText(KeyProblemActivity.this, complaints.issue + "Save Complaints Successfully", Toast.LENGTH_LONG).show();
                         //progressDialog.dismiss();
-                        // Intent intent = new Intent(SubmitAnIncidentActivity.this, SubmitAnIncidentActivity.class);
-                        // startActivity(intent);
-                        //  finish();
+                         Intent intent = new Intent(KeyProblemActivity.this, ConfirmActivity.class);
+                         startActivity(intent);
+                          finish();
 
 
                     }

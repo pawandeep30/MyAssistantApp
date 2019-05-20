@@ -30,7 +30,7 @@ import static android.os.Build.VERSION_CODES.P;
 public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener {
 
    // public String name, email, password;
-    EditText eTxtName, eTxtEmail, eTxtPassword;
+    EditText eTxtName,eTxtPhone, eTxtEmail, eTxtPassword;
     TextView txtLogin;
 
     Button btnRegister;
@@ -51,6 +51,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     void initViews() {
         eTxtName = findViewById(R.id.editTextName);
+        eTxtPhone = findViewById(R.id.editTextPhone);
         eTxtEmail = findViewById(R.id.editTextEmail);
         eTxtPassword = findViewById(R.id.editTextPassword);
         btnRegister = findViewById(R.id.buttonRegister);
@@ -92,6 +93,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
          //Get the data from UI and put it into User Object
             user.name = eTxtName.getText().toString();
+            user.phone = eTxtPhone.getText().toString();
             user.email = eTxtEmail.getText().toString();
             user.password = eTxtPassword.getText().toString();
 
@@ -111,11 +113,16 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
     void registerUser() {
         String name = eTxtName.getText().toString().trim();
+        String phone = eTxtPhone.getText().toString().trim();
         String email = eTxtEmail.getText().toString().trim();
         String password = eTxtPassword.getText().toString().trim();
 
         if (TextUtils.isEmpty(name)) {
             Toast.makeText(this, "Please Enter Valid Name", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (TextUtils.isEmpty(phone)) {
+            Toast.makeText(this, "Please Enter Valid phone number", Toast.LENGTH_SHORT).show();
             return;
         }
         if (TextUtils.isEmpty(email)) {

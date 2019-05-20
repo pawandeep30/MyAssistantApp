@@ -113,9 +113,9 @@ public class FuelProblemActivity extends AppCompatActivity implements View.OnCli
                 if (task.isComplete()) {
                     Toast.makeText(FuelProblemActivity.this, complaints.issue + "Save Complaints Successfully", Toast.LENGTH_LONG).show();
                     //progressDialog.dismiss();
-                    // Intent intent = new Intent(SubmitAnIncidentActivity.this, SubmitAnIncidentActivity.class);
-                    // startActivity(intent);
-                    //  finish();
+                     Intent intent = new Intent(FuelProblemActivity.this, ConfirmActivity.class);
+                     startActivity(intent);
+                      finish();
 
 
                 }

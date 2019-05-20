@@ -12,10 +12,17 @@ public class Util {
 
     public static final String TAB_NAME = "Customer";
 
-    public static final String COL_ID = "_ID";
+    public static final String COL_UID = "_ID";
     public static final String COL_NAME = "name";
-    public static final String COL_PHONE = "phone";
-    public static final String COL_EMAIL = "email";
+   public static final String COL_EMAIL = "email";
+    public static final String COL_PASSWORD = "password";
+    public static final String COL_ADDRESS = "address";
+    public static final String COL_MAKE = "make";
+    public static final String COL_MODEL = "model";
+    public static final String COL_YEAR = "year";
+    public static final String COL_COLOR = "color";
+    public static final String COL_ISSUE = "issue";
+
 
     public static final String CREATE_TAB_QUERY = "create table Customer(" +
             " _ID integer primary key autoincrement," +
