@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.training.myassistantapp.Listener.OnRecyclerItemClickListener;
 import com.training.myassistantapp.R;
 import com.training.myassistantapp.VehicleRegistration;
-import com.training.myassistantapp.model.User;
 
 import java.util.ArrayList;
 

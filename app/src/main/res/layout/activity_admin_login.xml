@@ -5,78 +5,69 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:orientation="vertical"
-    tools:context=".ForgotPassword">
-
-
-
-
+    tools:context=".AdminLoginActivity">
 
     <TextView
-        android:id="@+id/textViewPasswordTitle"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="68dp"
         android:layout_marginEnd="8dp"
-        android:text="Password Reset"
-        android:gravity="center"
-        android:textSize="30dp"
+        android:text="Admin Login"
         android:textColor="@color/colorPrimary"
+        android:textSize="28dp"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextPasswordEmail"
+        android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
+        android:padding="16dp"
+        android:hint="Enter Email"
         android:inputType="textPersonName"
-        android:hint="Enter your password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewPasswordTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-    <Button
-        android:id="@+id/buttonContinue"
+    <EditText
+        android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
-        android:text="CONTINUE"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/colorWhite"
-        android:textSize="20dp"
+        android:ems="10"
+        android:hint="Enter Password"
+        android:inputType="textPersonName"
+        android:padding="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
 
     <Button
-        android:id="@+id/buttonCancle"
+        android:id="@+id/buttonAdminLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="CANCLE"
+        android:layout_marginBottom="148dp"
+        android:text="Admin Login"
         android:background="@color/colorPrimary"
         android:textColor="@color/colorWhite"
-        android:textSize="20dp"
+        android:padding="16dp"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonContinue"
-        app:layout_constraintVertical_bias="0.054" />
-
-
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 </android.support.constraint.ConstraintLayout>
-

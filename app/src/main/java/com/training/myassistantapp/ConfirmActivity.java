@@ -23,7 +23,7 @@ public class ConfirmActivity extends AppCompatActivity {
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ConfirmActivity.this, AllVehiclesActivity.class);
+                Intent intent = new Intent(ConfirmActivity.this, UserDetailActivity.class);
                 startActivity(intent);
                 finish();
             }

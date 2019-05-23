@@ -15,14 +15,16 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="We're here to help"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AllUserActivity"></activity>
+        <activity android:name=".AdminLoginActivity"></activity>
+        <activity android:name=".AllUsersActivity" />
+        <activity android:name=".UserDetailActivity" />
         <activity android:name=".ForgotPassword" />
         <activity android:name=".ConfirmActivity" />
-        <activity android:name=".AllVehiclesActivity" />
+        <activity android:name=".VehicleDetailActivity" />
         <activity android:name=".AddVehicleActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

@@ -27,13 +27,13 @@ import com.training.myassistantapp.model.Util;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllVehiclesActivity extends AppCompatActivity implements OnRecyclerItemClickListener {
+public class VehicleDetailActivity extends AppCompatActivity implements OnRecyclerItemClickListener {
 
     ContentResolver resolver;
     RecyclerView recyclerView;
-    Complaints complaints;
+    //Complaints complaints;
 
-    ArrayList<User> users;
+//    ArrayList<User> users;
     ArrayList<VehicleRegistration> vehicles;
     CustomersAdapter customersAdapter;
     VehicleRegistration vehicleRegistration;
@@ -57,7 +57,7 @@ public class AllVehiclesActivity extends AppCompatActivity implements OnRecycler
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_vehicles);
+        setContentView(R.layout.activity_detail_vehicles);
         initViews();
 
         if (Util.isInternetConnected(this)) {
@@ -65,16 +65,15 @@ public class AllVehiclesActivity extends AppCompatActivity implements OnRecycler
             fetchCustomersFromCloudDB();
 
         } else {
-            Toast.makeText(AllVehiclesActivity.this, "Please Connect to Internet and Try Again", Toast.LENGTH_LONG).show();
+            Toast.makeText(VehicleDetailActivity.this, "Please Connect to Internet and Try Again", Toast.LENGTH_LONG).show();
         }
-
 
 
     }
     void fetchCustomersFromCloudDB(){
 
         Log.i("TEST","UID:"+firebaseUser.getUid());
-        Toast.makeText(AllVehiclesActivity.this,"Uid"+firebaseUser.getUid(),Toast.LENGTH_LONG).show();
+        Toast.makeText(VehicleDetailActivity.this,"Uid"+firebaseUser.getUid(),Toast.LENGTH_LONG).show();
 
         db.collection("users").document(firebaseUser.getUid())
                 .collection("vehicles").get()
@@ -83,7 +82,7 @@ public class AllVehiclesActivity extends AppCompatActivity implements OnRecycler
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if(task.isComplete()){
 
-                            users = new ArrayList<>();
+                            //users = new ArrayList<>();
                             vehicles = new ArrayList<>();
                             QuerySnapshot querySnapshot = task.getResult();
                             List<DocumentSnapshot> documentSnapshots = querySnapshot.getDocuments();
@@ -99,18 +98,18 @@ public class AllVehiclesActivity extends AppCompatActivity implements OnRecycler
                                 vehicles.add(vehicle);
                             }
 
-                            getSupportActionBar().setTitle("Total Users: "+vehicles.size());
+                            getSupportActionBar().setTitle("Total Vehicles: "+vehicles.size());
 
-                            customersAdapter = new CustomersAdapter(AllVehiclesActivity.this,R.layout.list_item,vehicles);
+                            customersAdapter = new CustomersAdapter(VehicleDetailActivity.this,R.layout.list_item,vehicles);
 
-                            customersAdapter.setOnRecyclerItemClickListener(AllVehiclesActivity.this);
+                            customersAdapter.setOnRecyclerItemClickListener(VehicleDetailActivity.this);
 
-                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AllVehiclesActivity.this);
+                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(VehicleDetailActivity.this);
                             recyclerView.setLayoutManager(linearLayoutManager);
                             recyclerView.setAdapter(customersAdapter);
 
                         }else{
-                            Toast.makeText(AllVehiclesActivity.this,"Some Error",Toast.LENGTH_LONG).show();
+                            Toast.makeText(VehicleDetailActivity.this,"Some Error",Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -118,52 +117,6 @@ public class AllVehiclesActivity extends AppCompatActivity implements OnRecycler
 
     }
 
-//    void fetchCustomersFromDB(){
-//
-//        String[] projection = {Util.COL_UID, Util.COL_NAME, Util.COL_PASSWORD, Util.COL_EMAIL, Util.COL_ADDRESS, Util.COL_MAKE,
-//        Util.COL_MODEL, Util.COL_YEAR, Util.COL_COLOR};
-//        Cursor cursor = resolver.query(Util.CUSTOMER_URI, projection, null, null, null);
-//
-//        if(cursor!=null){
-//
-//            users = new ArrayList<>();
-//
-//            while(cursor.moveToNext()){
-//
-//                VehicleRegistration vehicleRegistration = new VehicleRegistration();
-//                User user = new User();
-//                Complaints complaints = new Complaints();
-//
-//                //  vehicleRegistration.Uid = cursor.getInt(cursor.getColumnIndex(Util.COL_UID));
-//                //vehicleRegistration.Latitude = cursor.getString(Util.COL_LATITUDE);
-//                // vehicleRegistration.Latitude = cursor.getString(Util.COL_LONGITUDE);
-//                user.name = cursor.getString(cursor.getColumnIndex(Util.COL_NAME));
-//                user.password = cursor.getString(cursor.getColumnIndex(Util.COL_PASSWORD));
-//                user.email = cursor.getString(cursor.getColumnIndex(Util.COL_EMAIL));
-//                user.address = cursor.getString(cursor.getColumnIndex(Util.COL_ADDRESS));
-//
-//                vehicleRegistration.Make  = cursor.getString(cursor.getColumnIndex(Util.COL_MAKE));
-//                vehicleRegistration.Model  = cursor.getString(cursor.getColumnIndex(Util.COL_MODEL));
-//                vehicleRegistration.Year  = cursor.getString(cursor.getColumnIndex(Util.COL_YEAR));
-//                vehicleRegistration.Color  = cursor.getString(cursor.getColumnIndex(Util.COL_COLOR));
-//
-//                complaints.issue = cursor.getString(cursor.getColumnIndex(Util.COL_ISSUE));
-//
-//                users.add(user);
-//            }
-//
-//            getSupportActionBar().setTitle("Total Users: "+users.size());
-//
-//            customersAdapter = new CustomersAdapter(this,R.layout.list_item,users);
-//
-//            customersAdapter.setOnRecyclerItemClickListener(this);
-//
-//            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-//            recyclerView.setLayoutManager(linearLayoutManager);
-//            recyclerView.setAdapter(customersAdapter);
-//        }
-//
-//    }
 
     void showVehicleDetails(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -173,29 +126,8 @@ public class AllVehiclesActivity extends AppCompatActivity implements OnRecycler
         AlertDialog dialog = builder.create();
         dialog.show();
 
-
-
     }
-//    void showCustomerDetails() {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle(vehicleRegistration.Make + " Details:");
-//        builder.setMessage(vehicleRegistration.toString());
-//        builder.setPositiveButton("Done", null);
-//        AlertDialog dialog = builder.create();
-//        dialog.show();
-//    }
 
-//    void deleteCustomerFromDB(){
-//        String where = Util.COL_UID+" = "+vehicleRegistration.Uid;
-//        int i = resolver.delete(Util.CUSTOMER_URI,where,null);
-//        if(i>0){
-//            Toast.makeText(this,"Deletion Finished",Toast.LENGTH_LONG).show();
-//            users.remove(position);
-//            customersAdapter.notifyDataSetChanged(); // Refresh Your RecyclerView
-//        }else{
-//            Toast.makeText(this,"Deletion Failed",Toast.LENGTH_LONG).show();
-//        }
-//    }
 
     void deleteCustomerFromCloudDB(){
         db.collection("users").document(firebaseUser.getUid())
@@ -205,11 +137,11 @@ public class AllVehiclesActivity extends AppCompatActivity implements OnRecycler
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isComplete()){
-                            Toast.makeText(AllVehiclesActivity.this,"Deletion Finished",Toast.LENGTH_LONG).show();
+                            Toast.makeText(VehicleDetailActivity.this,"Deletion Finished",Toast.LENGTH_LONG).show();
                             vehicles.remove(position);
                             customersAdapter.notifyDataSetChanged(); // Refresh Your RecyclerView
                         }else{
-                            Toast.makeText(AllVehiclesActivity.this,"Deletion Failed",Toast.LENGTH_LONG).show();
+                            Toast.makeText(VehicleDetailActivity.this,"Deletion Failed",Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -235,7 +167,7 @@ public class AllVehiclesActivity extends AppCompatActivity implements OnRecycler
 
     void showOptions(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        String[] items = {"View "+vehicleRegistration.Make, "Update "+vehicleRegistration.Model, "Delete "+vehicleRegistration.Color, "Cancel"};
+        String[] items = {"View "+vehicleRegistration.Make, "Update "+vehicleRegistration.Make, "Delete "+vehicleRegistration.Make, "Cancel"};
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -247,7 +179,7 @@ public class AllVehiclesActivity extends AppCompatActivity implements OnRecycler
 
                     case 1:
 
-                        Intent intent = new Intent(AllVehiclesActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(VehicleDetailActivity.this, HomeActivity.class);
                         intent.putExtra("keyvehicles",vehicles);
                         startActivity(intent);
 

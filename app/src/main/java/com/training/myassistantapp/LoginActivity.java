@@ -1,27 +1,24 @@
 package com.training.myassistantapp;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.training.myassistantapp.model.User;
 
 import static com.training.myassistantapp.R.id.textViewforgot;
@@ -35,20 +32,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     User user;
     ProgressDialog progressDialog;
-FirebaseUser firebaseUser;
+    FirebaseUser firebaseUser;
     FirebaseAuth auth;
 
     void initViews() {
         eTxtEmail = findViewById(R.id.editTextEmail);
         eTxtPassword = findViewById(R.id.editTextPassword);
         btnLogin = findViewById(R.id.buttonLogin);
-       txtforgot= findViewById(textViewforgot);
-       txtneedaccount = findViewById(R.id.textViewneedaccount);
+        txtforgot = findViewById(textViewforgot);
+        txtneedaccount = findViewById(R.id.textViewneedaccount);
         user = new User();
 
-        btnLogin.setOnClickListener(this);
-       txtneedaccount.setOnClickListener(this);
-       txtforgot.setOnClickListener(this);
+      btnLogin.setOnClickListener(this);
+        txtneedaccount.setOnClickListener(this);
+        txtforgot.setOnClickListener(this);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Please Wait..");
@@ -107,11 +104,10 @@ FirebaseUser firebaseUser;
 //        user.password = eTxtPassword.getText().toString();
 
 
-
-    void loginUser(){
+    void loginUser() {
 
         progressDialog.show();
-        firebaseUser= auth.getCurrentUser();
+        firebaseUser = auth.getCurrentUser();
         auth.signInWithEmailAndPassword(user.email, user.password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -134,9 +130,9 @@ FirebaseUser firebaseUser;
                             Toast.makeText(LoginActivity.this, " Login Successful", Toast.LENGTH_LONG).show();
                             progressDialog.dismiss();
 
-                                Intent intent = new Intent(LoginActivity.this, MyLocationActivity.class);
-                                startActivity(intent);
-                                finish();
+                            Intent intent = new Intent(LoginActivity.this, MyLocationActivity.class);
+                            startActivity(intent);
+                            finish();
 
                         }
                     }
@@ -144,23 +140,12 @@ FirebaseUser firebaseUser;
                 });
 
     }
+
     void clearFields() {
         eTxtEmail.setText("");
         eTxtPassword.setText("");
     }
-                        }
-//                           Toast.makeText(LoginActivity.this, user.email + "Login Successfully", Toast.LENGTH_LONG).show();
-//
-//                            Intent intent = new Intent(LoginActivity.this, MyLocationActivity.class);
-//                            startActivity(intent);
-//                            progressDialog.dismiss();
-//                            finish();
-//                        }
-//
-//                    }
-//                });
-//
-//    }
-//
-//}
+
+
+}
 

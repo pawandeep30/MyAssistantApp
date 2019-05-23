@@ -89,7 +89,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
         int id = v.getId();
 
-        if (id == R.id.buttonRegister) {
+        switch (id){
+            case R.id.buttonRegister :
 
          //Get the data from UI and put it into User Object
             user.name = eTxtName.getText().toString();
@@ -97,13 +98,18 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
             user.email = eTxtEmail.getText().toString();
             user.password = eTxtPassword.getText().toString();
 
+
+//            case R.id.textViewLogin:
+//                Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+//                startActivity(intent);
+//                finish();
+//                break;
+
             if(Util.isInternetConnected(this)) {
                 registerUser();
 
-
-            }else{
-             Toast.makeText(this, "Please Connect to Internet and Try Again", Toast.LENGTH_LONG).show();
             }
+
 
         }
     }
@@ -169,7 +175,11 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
 
 
         firebaseUser = auth.getCurrentUser();
-        db.collection("users").document(firebaseUser.getUid()).set(user)
+        String id = firebaseUser.getUid();
+        user.uid=id;
+
+
+        db.collection("users").document(id).set(user)
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

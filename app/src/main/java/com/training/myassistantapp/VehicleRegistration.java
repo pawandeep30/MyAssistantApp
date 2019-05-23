@@ -16,7 +16,7 @@ public VehicleRegistration()
 }
 
     public VehicleRegistration(String make, String model, String year,
-                               String color, String uid, double latitude, double longitiude,String token) {
+                               String color, double latitude, double longitiude, String uid) {
        this.Make = make;
         this.Model = model;
         this.Year = year;
@@ -34,7 +34,7 @@ public VehicleRegistration()
                 ", Model='" + Model + '\'' +
                 ", year='" + Year + '\'' +
                 ", color='" + Color + '\'' +
-                ", Uid='" + Uid + '\'' +
+                ", Vid='" + Uid + '\'' +
                 ", Latitude=" + Latitude +
                 ", Longitiude=" + Longitiude +
                 '}';
