@@ -116,7 +116,7 @@ public class UserDetailActivity extends AppCompatActivity {
         menu.add(1,101,1,"User Profile");
         menu.add(1,102,1,"Vehicle Details");
         menu.add(1,103,1,"Admin Login");
-        menu.add(1,104,1,"Log Out;");
+        menu.add(1,104,1,"Log Out");
 
         return super.onCreateOptionsMenu(menu);
     }

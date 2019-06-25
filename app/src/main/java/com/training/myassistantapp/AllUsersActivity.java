@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -173,7 +175,7 @@ public class AllUsersActivity extends AppCompatActivity implements OnRecyclerIte
 
     void showOptions(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        String[] items = {"View ", "Update ", "Delete ","Show Vehicles", "Cancel"};
+        String[] items = {"View ", "Update ", "Delete ", "Cancel"};
         builder.setItems(items, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -195,11 +197,11 @@ public class AllUsersActivity extends AppCompatActivity implements OnRecyclerIte
                         askForDeletion();
                         break;
 
-                    case 3:
-                        Intent intent1 = new Intent(AllUsersActivity.this, VehicleDetailActivity.class);
-
-                        startActivity(intent1);
-                        break;
+//                    case 3:
+//                        Intent intent1 = new Intent(AllUsersActivity.this, VehicleDetailActivity.class);
+//
+//                        startActivity(intent1);
+//                        break;
 
                 }
 
@@ -220,6 +222,28 @@ public class AllUsersActivity extends AppCompatActivity implements OnRecyclerIte
         showOptions();
 
         }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        menu.add(1,101,1,"Log Out");
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if(item.getItemId() == 101){
+            auth.signOut();
+            Intent intent = new Intent(AllUsersActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 
 }

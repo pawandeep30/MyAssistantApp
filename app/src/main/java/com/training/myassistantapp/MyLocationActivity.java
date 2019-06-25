@@ -132,7 +132,29 @@ public class MyLocationActivity extends AppCompatActivity implements LocationLis
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
+        menu.add(1,101,1,"Log Out");
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if(item.getItemId() == 101){
+            auth.signOut();
+            Intent intent = new Intent(MyLocationActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
 
 
 }

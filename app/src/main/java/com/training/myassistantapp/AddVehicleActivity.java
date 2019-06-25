@@ -69,7 +69,7 @@ public class AddVehicleActivity extends AppCompatActivity implements View.OnClic
         firebaseInstanceId = FirebaseInstanceId.getInstance();
 
 
-//        progressDialog = new ProgressDialog(this);
+//        pro/gressDialog = new ProgressDialog(this);
 //        progressDialog.setMessage("Please Wait..");
 //        progressDialog.setCancelable(false);
     }
@@ -129,5 +129,34 @@ public class AddVehicleActivity extends AppCompatActivity implements View.OnClic
 
 
     }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        menu.add(1,101,1,"Log Out");
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if(item.getItemId() == 101){
+            auth.signOut();
+            Intent intent = new Intent(AddVehicleActivity.this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+//        }else if(item.getItemId() == 101){
+//            auth.signOut();
+//            Intent intent = new Intent(UserDetailActivity.this, HomeActivity.class);
+//            startActivity(intent);
+//            finish();
+//        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
 }

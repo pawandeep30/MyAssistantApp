@@ -33,6 +33,7 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     EditText eTxtName,eTxtPhone, eTxtEmail, eTxtPassword;
     TextView txtLogin;
 
+
     Button btnRegister;
 
     User user;
@@ -57,6 +58,9 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
         btnRegister = findViewById(R.id.buttonRegister);
         txtLogin = findViewById(R.id.textViewLogin);
 
+
+
+
         btnRegister.setOnClickListener(this);
         txtLogin.setOnClickListener(this);
 
@@ -79,6 +83,8 @@ public class RegistrationActivity extends AppCompatActivity implements View.OnCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
+
+
 
         initViews();
     }
